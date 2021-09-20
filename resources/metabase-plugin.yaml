@@ -1,0 +1,39 @@
+info:
+  name: Metabase Trino Driver
+  version: 1.0.0-trino-jdbc-361
+  description: Allows Metabase to connect to Trino databases. Community Supported driver.
+driver:
+  name: trino
+  display-name: Trino
+  lazy-load: true
+  parent: presto-jdbc
+  connection-properties:
+    - host
+    - merge:
+        - port
+        - default: 8080
+    - merge:
+        - dbname
+        - name: catalog
+          placeholder: hive
+          display-name: Catalog
+          required: false
+    - name: schema
+      display-name: Schema (optional)
+      required: false
+    - merge:
+        - user
+        - required: false
+    - merge:
+        - password
+        - required: false
+    - ssl
+    - merge:
+        - additional-options
+        - placeholder: "trustServerCertificate=false"
+
+init:
+  - step: load-namespace
+    namespace: metabase.driver.trino
+  - step: register-jdbc-driver
+    class: io.trino.jdbc.TrinoDriver
