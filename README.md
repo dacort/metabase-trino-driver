@@ -4,6 +4,8 @@ An example for how to implement a Trino driver based off existing Presto JDBC su
 
 _Please note this only supports the latest unstable version of Metabase until v0.41 is released_
 
+_This is also just an example of how to implement this - I DO NOT plan on supporting a Trino driver. :)_
+
 ## Prerequisites
 
 The next version of Metabase [changes how plugins](https://github.com/metabase/metabase/pull/17606) are built. You'll need to use the latest branch.
