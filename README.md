@@ -2,40 +2,31 @@
 
 An example for how to implement a Trino driver based off existing Presto JDBC support in Metabase.
 
-_Please note this only supports the latest unstable version of Metabase until v0.41 is released_
+_Please note this only supports `v0.42.0-preview1` version of Metabase until v0.42 is released_
 
 _This is also just an example of how to implement this - I DO NOT plan on supporting a Trino driver. :)_
 
 ## Prerequisites
 
-The next version of Metabase [changes how plugins](https://github.com/metabase/metabase/pull/17606) are built. You'll need to use the latest branch.
+- Docker
+
+## Run Metabase
+
+If you just want to run the 0.42 preview release of Metabase with this driver, just do a `docker build` and `run`.
 
 ```shell
-git clone https://github.com/metabase/metabase.git
+docker build -t metabase/trino .
+docker run --rm --name metabase-trino -p 3000:3000 metabase/trino
 ```
 
-## Compiling
+This will load up Metabase on port 3000 with the Trino driver loaded up.
 
-- Update `deps.cdn`
+### Build Jars
 
-For some reason, absolute paths are necessary in this file, so you'll have to update it with the path as necessary.
-
-- Build the plugin
+If you want the Trino jar to copy to your own Metabase intallation, you can use the `--output` flag with `docker build`.
 
 ```shell
-clojure -X:dev:build
+docker build --output jars --target stg_export .
 ```
 
-- Copy the resulting drive to wherever you have Metabase checked out
-
-```shell
-cp target/trino.metabase-driver.jar ../metabase/plugins/
-```
-
-## Running
-
-- Spin up the latest development branch of Metabase:
-
-```
-clojure -M:run:drivers
-```
+If successful, you should have a `jars/trino.metabase-driver.jar` file.
