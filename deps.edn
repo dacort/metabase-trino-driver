@@ -1,5 +1,5 @@
 {:paths
- ["/Users/username/src/metabase-trino-driver/src" "/Users/username/src/metabase-trino-driver/resources"]
+ ["/build/driver/src" "/build/driver/resources"]
 
  :deps
  {io.trino/trino-jdbc {:mvn/version "361"}}
@@ -7,8 +7,8 @@
  ;; build the driver with clojure -X:build
  :aliases
  {:build
-  {:extra-deps {metabase/metabase-core {:local/root "../../mbsrc/metabase"}
-                metabase/build-drivers {:local/root "../../mbsrc/metabase/bin/build-drivers"}}
+  {:extra-deps {metabase/metabase-core {:local/root "../metabase"}
+                metabase/build-drivers {:local/root "../metabase/bin/build-drivers"}}
    :exec-fn    build-drivers.build-driver/build-driver!
    :exec-args  {:driver      :trino
                 :project-dir "."
