@@ -1,3 +1,11 @@
+--------
+
+⚠️ An official driver is now available at https://github.com/starburstdata/metabase-driver
+
+--------
+
+
+
 # Metabase Trino Driver
 
 An example for how to implement a Trino driver based off existing Presto JDBC support in Metabase.
